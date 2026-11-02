@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ceebs Studio | Portrait, Graduation, Family, Product &amp; Food Photography in Sabah</title>
+<meta name="description" content="Ceebs Studio: quiet, cinematic photography in Kota Kinabalu and Labuan. Portraits, graduation, family, product and food shoots.">
+<meta property="og:title" content="Ceebs Studio">
+<meta property="og:description" content="Quiet, cinematic photography in Kota Kinabalu and Labuan, Sabah.">
+<meta property="og:image" content="images/city.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CEEBS STUDIO — colours
+     Ink background, warm "sodium" amber accent, film-paper text.
+     ========================================================= */
+  :root {
+    --ink: #0e0d0c;
+    --ink-2: #161412;
+    --ink-3: #1f1c19;
+    --paper: #ece4d6;
+    --paper-dim: #a99f90;
+    --paper-faint: #6f675d;
+    --amber: #e39545;
+    --amber-soft: rgba(227,149,69,.14);
+    --line: #2c2823;
+    --radius: 2px;
+    --max: 1200px;
+    --serif: "Instrument Serif", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --sans: "Manrope", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Film grain over everything */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  ::selection { background: var(--amber); color: var(--ink); }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .mono {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  .mono.amber { color: var(--amber); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -.01em; }
+  h2 { font-size: clamp(40px, 5.4vw, 68px); }
+  h2 em, h1 em { color: var(--amber); font-style: italic; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 99px;
+    text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--paper);
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn.solid { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+  .btn.solid:hover { background: var(--paper); border-color: var(--paper); }
+  .btn.ghost:hover { background: var(--paper); color: var(--ink); }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    transition: background .3s ease, border-color .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.nav.scrolled { background: rgba(14,13,12,.88); backdrop-filter: blur(10px); border-color: var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo {
+    font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: .32em;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .logo i { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 14px var(--amber); }
+  .nav ul { display: flex; gap: 30px; list-style: none; }
+  .nav ul a { text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper-dim); }
+  .nav ul a:hover { color: var(--paper); }
+  .nav .cta { padding: 9px 18px; font-size: 13px; }
+  .menu-btn { display: none; background: none; border: 0; color: var(--paper); font-size: 24px; cursor: pointer; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+  .hero-img::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(14,13,12,.55) 0%, rgba(14,13,12,.15) 35%, rgba(14,13,12,.75) 75%, var(--ink) 100%);
+  }
+  .hero .wrap { position: relative; width: 100%; padding-bottom: 88px; }
+  .hero h1 { font-size: clamp(52px, 8vw, 112px); max-width: 11em; margin: 18px 0 24px; }
+  .hero p.lead { font-size: 19px; color: var(--paper-dim); max-width: 32em; }
+  .btns { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-meta {
+    display: flex; justify-content: space-between; margin-top: 64px; padding-top: 18px;
+    border-top: 1px solid rgba(236,228,214,.18); flex-wrap: wrap; gap: 10px;
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 120px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 56px; flex-wrap: wrap; }
+  .section-head h2 { margin-top: 14px; }
+  .section-head p { color: var(--paper-dim); max-width: 26em; }
+
+  /* Services */
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .svc { background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .svc .shot { aspect-ratio: 3 / 2; overflow: hidden; }
+  .svc .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+  .svc:hover .shot img { transform: scale(1.03); }
+  .svc-body { padding: 32px 32px 36px; }
+  .svc-body h3 { font-size: 38px; margin: 10px 0 12px; }
+  .svc-body p { color: var(--paper-dim); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; list-style: none; }
+  .tags li { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--line); padding: 6px 12px; border-radius: 99px; color: var(--paper-dim); }
+  .tags li.hi { border-color: var(--amber); color: var(--amber); }
+
+  /* Work / gallery */
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filters button {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    background: none; border: 1px solid var(--line); color: var(--paper-dim); padding: 8px 16px; border-radius: 99px; cursor: pointer;
+  }
+  .filters button.active { border-color: var(--amber); color: var(--amber); }
+  .gallery { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+  .frame { cursor: zoom-in; }
+  .frame.hide { display: none; }
+  .frame .shot { overflow: hidden; border-radius: var(--radius); background: var(--ink-3); }
+  .frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease, opacity .3s ease; }
+  .frame:hover img { transform: scale(1.025); }
+  .frame figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 10px; }
+  .frame figcaption span:first-child { color: var(--amber); }
+  /* layout spans (6-col grid) */
+  .w4 { grid-column: span 4; } .w2 { grid-column: span 2; } .w3 { grid-column: span 3; }
+  .w4 .shot, .w3 .shot { aspect-ratio: 3 / 2; }
+  .w2 .shot { aspect-ratio: 3 / 4.15; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(8,7,6,.96); display: none; align-items: center; justify-content: center; z-index: 200; padding: 28px; flex-direction: column; gap: 14px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-height: 84vh; max-width: 94vw; }
+  .lightbox button { position: absolute; top: 18px; right: 26px; font-size: 34px; color: var(--paper); background: none; border: 0; cursor: pointer; }
+
+  /* Packages */
+  .packages { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .pk-tabs { display: flex; gap: 28px; margin-bottom: 32px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+  .pk-tabs button {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    background: none; border: 0; border-bottom: 2px solid transparent; padding: 0 0 14px; margin-bottom: -1px;
+    color: var(--paper-dim); cursor: pointer;
+  }
+  .pk-tabs button.active { color: var(--paper); border-color: var(--amber); }
+  .pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pk-grid.hide { display: none; }
+  .pk { border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; background: var(--ink); position: relative; }
+  .pk.featured { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber) inset, 0 30px 80px -40px rgba(227,149,69,.35); }
+  .pk.featured .badge { position: absolute; top: -11px; left: 32px; background: var(--amber); color: var(--ink); font-family: var(--mono); font-size: 10px; letter-spacing: .16em; padding: 4px 10px; text-transform: uppercase; }
+  .pk h3 { font-size: 34px; }
+  .pk .price { font-family: var(--serif); font-size: 54px; line-height: 1; margin: 18px 0 6px; }
+  .pk .price small { font-family: var(--mono); font-size: 14px; letter-spacing: .1em; color: var(--paper-dim); vertical-align: top; margin-right: 4px; }
+  .pk ul { list-style: none; margin: 24px 0 30px; display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .pk li { font-size: 15px; color: var(--paper-dim); padding-left: 22px; position: relative; }
+  .pk li::before { content: "—"; position: absolute; left: 0; color: var(--amber); }
+  .pk .btn { margin-top: auto; justify-content: center; }
+  .pk-foot { margin-top: 28px; color: var(--paper-dim); font-size: 14px; }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .step { padding: 28px 24px 0 0; border-right: 1px solid var(--line); margin-right: 24px; }
+  .step:last-child { border-right: 0; margin-right: 0; }
+  .step h3 { font-size: 28px; margin: 14px 0 8px; }
+  .step p { color: var(--paper-dim); font-size: 15px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 72px; align-items: center; }
+  .about-grid .shot { aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius); }
+  .about-grid .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 30% center; }
+  .about-grid h2 { margin: 14px 0 26px; }
+  .about-grid p { color: var(--paper-dim); margin-bottom: 18px; max-width: 34em; }
+  .specs { margin-top: 30px; display: grid; grid-template-columns: auto 1fr; gap: 10px 26px; border-top: 1px solid var(--line); padding-top: 24px; }
+  .specs dd { color: var(--paper); font-size: 15px; }
+
+  /* Testimonials */
+  .q-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .q { border-top: 1px solid var(--line); padding-top: 24px; }
+  .q p { font-family: var(--serif); font-size: 26px; line-height: 1.3; }
+  .q .mono { display: block; margin-top: 18px; }
+
+  /* Contact */
+  .contact { background: var(--ink-2); border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+  .contact h2 { margin: 14px 0 22px; }
+  .contact p { color: var(--paper-dim); max-width: 28em; }
+  .contact-links { margin-top: 36px; display: grid; }
+  .contact-links a { text-decoration: none; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 18px; }
+  .contact-links a:first-child { border-top: 1px solid var(--line); }
+  .contact-links a:hover { color: var(--amber); }
+  .form-frame { background: #fff; border-radius: var(--radius); overflow: hidden; }
+  .form-frame iframe { display: block; width: 100%; height: 1500px; border: 0; }
+  .form-alt { margin-top: 14px; font-size: 14px; color: var(--paper-faint); }
+  .form-alt a { color: var(--amber); }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  /* Fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .svc-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .pk-grid, .q-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(2) { border-right: 0; }
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .w4, .w3 { grid-column: span 2; } .w2 { grid-column: span 1; }
+    .about-grid { gap: 40px; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    .menu-btn { display: block; }
+    .nav ul, .nav .cta { display: none; }
+    .nav.open { background: var(--ink); }
+    .nav.open ul { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--ink); padding: 22px 16px; gap: 20px; border-bottom: 1px solid var(--line); }
+    section { padding: 84px 0; }
+    .hero .wrap { padding-bottom: 56px; }
+    .hero-img::after { background: linear-gradient(180deg, rgba(14,13,12,.7) 0%, rgba(14,13,12,.55) 40%, rgba(14,13,12,.9) 80%, var(--ink) 100%); }
+    .hero h1, .hero p.lead { text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+    .hero-meta { margin-top: 40px; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: 0; margin-right: 0; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .gallery { grid-template-columns: 1fr; }
+    .w4, .w3, .w2 { grid-column: span 1; }
+    .w2 .shot { aspect-ratio: 3 / 2; }
+    .pk { padding: 26px; }
+    .form-frame iframe { height: 1650px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     QUICK EDIT GUIDE
+     - Photos live in the "images" folder. Swap or add files there.
+     - WhatsApp number and email are near the bottom (search "wa.me").
+     - Prices are in the PACKAGES section (search "price").
+     ========================================================= -->
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><i></i>CEEBS STUDIO</a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn solid cta">Book a shoot</a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('nav').classList.toggle('open')">&#9776;</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="hero-img"><img src="images/city.jpg" alt="A city at night seen from above, with a curving highway and lit apartment towers"></div>
+    <div class="wrap">
+      <span class="mono amber">Kota Kinabalu &amp; Labuan · Sabah</span>
+      <h1>Quiet, cinematic photos for the moments that <em>matter.</em></h1>
+      <p class="lead">Portraits, graduations and family sessions with a film-inspired look, plus clean, moody photos for cafés and small brands.</p>
+      <div class="btns">
+        <a href="#packages" class="btn solid">See packages →</a>
+        <a href="#work" class="btn ghost">View work</a>
+      </div>
+      <div class="hero-meta">
+        <span class="mono">FR 00 — Ceebs Studio</span>
+        <span class="mono">Shot on Fujifilm</span>
+        <span class="mono">Golden hour → after dark</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="mono amber">01 — Services</span>
+          <h2>Two ways I can <em>help</em></h2>
+        </div>
+        <p>Relaxed, guided sessions and a consistent, film-like colour grade, so your photos feel like a set, not a random roll.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc reveal">
+          <div class="shot"><img src="images/cafe.jpg" alt="A woman resting her chin on her hand while looking at her phone in a warmly lit café" loading="lazy"></div>
+          <div class="svc-body">
+            <span class="mono">A / People</span>
+            <h3>Portraits, Grads &amp; Families</h3>
+            <p>Unhurried sessions on location, from golden hour into the evening. I'll guide the poses and catch the honest moments in between.</p>
+            <ul class="tags"><li>Graduation</li><li>Family</li><li>Couples</li><li>Personal branding</li><li class="hi">Evening sessions</li></ul>
+          </div>
+        </article>
+        <article class="svc reveal">
+          <div class="shot"><img src="images/leaf.jpg" alt="Close-up of a pink and green speckled leaf against a dark background" loading="lazy"></div>
+          <div class="svc-body">
+            <span class="mono">B / Business</span>
+            <h3>Product &amp; Food</h3>
+            <p>Close, detailed and atmospheric photos for menus, delivery apps, online shops and social media, shot at your place.</p>
+            <ul class="tags"><li>Menus</li><li>Delivery apps</li><li>Online shops</li><li>Flat lays</li><li>Social content</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" style="padding-top:40px">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="mono amber">02 — Selected work</span>
+          <h2>Contact sheet</h2>
+        </div>
+        <div class="filters" role="tablist">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="people">People</button>
+          <button data-filter="details">Details</button>
+          <button data-filter="places">Places</button>
+        </div>
+      </div>
+
+      <!-- To add a photo: copy one <figure> block, change the image file, caption and data-cat (people, details or places). -->
+      <div class="gallery" id="gallery">
+        <figure class="frame w4 reveal" data-cat="people">
+          <div class="shot"><img src="images/cafe.jpg" alt="Woman in a café at night looking at her phone" loading="lazy"></div>
+          <figcaption class="mono"><span>FR 01</span><span>Café, after dark</span></figcaption>
+        </figure>
+        <figure class="frame w2 reveal" data-cat="details">
+          <div class="shot"><img src="images/leaf.jpg" alt="Pink speckled leaf, close-up" loading="lazy" style="object-position:40% center"></div>
+          <figcaption class="mono"><span>FR 02</span><span>Leaf, close</span></figcaption>
+        </figure>
+        <figure class="frame w3 reveal" data-cat="people">
+          <div class="shot"><img src="images/bokeh.jpg" alt="Silhouette of a person in glasses with blurred city lights" loading="lazy"></div>
+          <figcaption class="mono"><span>FR 03</span><span>City lights, out of focus</span></figcaption>
+        </figure>
+        <figure class="frame w3 reveal" data-cat="places">
+          <div class="shot"><img src="images/shore.jpg" alt="A white car parked on a hazy beach, framed by a tree" loading="lazy"></div>
+          <figcaption class="mono"><span>FR 04</span><span>Shore, late afternoon</span></figcaption>
+        </figure>
+        <figure class="frame w2 reveal" data-cat="details">
+          <div class="shot"><img src="images/leaves.jpg" alt="Pink and green leaves against a dark hedge" loading="lazy" style="object-position:65% center"></div>
+          <figcaption class="mono"><span>FR 05</span><span>Leaves at night</span></figcaption>
+        </figure>
+        <figure class="frame w4 reveal" data-cat="places">
+          <div class="shot"><img src="images/city.jpg" alt="City at night from above" loading="lazy"></div>
+          <figcaption class="mono"><span>FR 06</span><span>City from above</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages" id="packages">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="mono amber">03 — Packages</span>
+          <h2>Simple, clear <em>pricing</em></h2>
+        </div>
+        <p>Every package includes edited, high-resolution photos in an online gallery. Need something different? Just ask.</p>
+      </div>
+
+      <div class="pk-tabs">
+        <button class="active" data-pk="people">Portraits · Grads · Family</button>
+        <button data-pk="biz">Product · Food</button>
+      </div>
+
+      <div class="pk-grid" id="pk-people">
+        <div class="pk">
+          <span class="mono">P-01</span>
+          <h3>Starter</h3>
+          <div class="price"><small>RM</small>150</div>
+          <span class="mono">Solo grads &amp; headshots</span>
+          <ul><li>30–45 minutes</li><li>1 location</li><li>10–15 edited photos</li><li>Delivery within 7 days</li></ul>
+          <a href="#contact" class="btn ghost">Book Starter</a>
+        </div>
+        <div class="pk featured">
+          <span class="badge">Most popular</span>
+          <span class="mono">P-02</span>
+          <h3>Standard</h3>
+          <div class="price"><small>RM</small>250</div>
+          <span class="mono">Couples, grads with family</span>
+          <ul><li>1 hour</li><li>1–2 locations</li><li>25–30 edited photos</li><li>Outfit change included</li></ul>
+          <a href="#contact" class="btn solid">Book Standard</a>
+        </div>
+        <div class="pk">
+          <span class="mono">P-03</span>
+          <h3>Extended</h3>
+          <div class="price"><small>RM</small>450</div>
+          <span class="mono">Families &amp; group grads</span>
+          <ul><li>2 hours</li><li>Multiple groups or outfits</li><li>50+ edited photos</li><li>Priority delivery</li></ul>
+          <a href="#contact" class="btn ghost">Book Extended</a>
+        </div>
+      </div>
+
+      <div class="pk-grid hide" id="pk-biz">
+        <div class="pk">
+          <span class="mono">B-01</span>
+          <h3>Essentials</h3>
+          <div class="price"><small>RM</small>200</div>
+          <span class="mono">New listings &amp; delivery apps</span>
+          <ul><li>Up to 5 items</li><li>Clean background</li><li>10 edited photos</li><li>Web-ready sizes</li></ul>
+          <a href="#contact" class="btn ghost">Book Essentials</a>
+        </div>
+        <div class="pk featured">
+          <span class="badge">Most popular</span>
+          <span class="mono">B-02</span>
+          <h3>Styled</h3>
+          <div class="price"><small>RM</small>380</div>
+          <span class="mono">Social &amp; menu refresh</span>
+          <ul><li>Up to 10 items</li><li>Styled flat lays &amp; lifestyle shots</li><li>20 edited photos</li><li>Social-media crops</li></ul>
+          <a href="#contact" class="btn solid">Book Styled</a>
+        </div>
+        <div class="pk">
+          <span class="mono">B-03</span>
+          <h3>Menu Day</h3>
+          <div class="price"><small>RM</small>800</div>
+          <span class="mono">Full menu or range</span>
+          <ul><li>Half-day on location</li><li>Full menu or catalogue</li><li>40+ edited photos</li><li>Monthly refresh option</li></ul>
+          <a href="#contact" class="btn ghost">Book Menu Day</a>
+        </div>
+      </div>
+
+      <p class="pk-foot">Introductory prices for new clients. Golden-hour and evening sessions available on any portrait package. A 30% deposit secures your date; travel outside the city area may carry a small extra fee.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="mono amber">04 — How it works</span>
+          <h2>From hello to <em>gallery</em></h2>
+        </div>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><span class="mono amber">Step 1</span><h3>Say hello</h3><p>Fill in the booking form or send a WhatsApp with your date and idea.</p></div>
+        <div class="step"><span class="mono amber">Step 2</span><h3>Plan it</h3><p>We pick a spot and a time of day, and I'll share tips on outfits or styling.</p></div>
+        <div class="step"><span class="mono amber">Step 3</span><h3>Shoot day</h3><p>Relaxed and guided. No stiff poses, just you being you.</p></div>
+        <div class="step"><span class="mono amber">Step 4</span><h3>Your gallery</h3><p>Edited photos in an online gallery, ready to download and share.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding-top:20px">
+    <div class="wrap about-grid">
+      <div class="shot reveal"><img src="images/bokeh.jpg" alt="Silhouette in glasses against warm city bokeh" loading="lazy"></div>
+      <div class="reveal">
+        <span class="mono amber">05 — About</span>
+        <h2>Hi, I'm Den. <em>Most people call me Ceebs.</em></h2>
+        <p>I was born in Kota Kinabalu and spent half my childhood in Labuan, and I still split my time between the two. Somewhere along the way I fell for old cameras and the look of film.</p>
+        <p>I shoot on a Fujifilm because it's the closest thing to film without the cost of a roll. I'm drawn to quiet light: streetlamps, café glow, the last bit of sun over the water. Those small, honest moments are what I try to catch for you.</p>
+        <dl class="specs mono">
+          <dt>Based</dt><dd>Kota Kinabalu &amp; Labuan, Sabah</dd>
+          <dt>Camera</dt><dd>Fujifilm X-T20</dd>
+          <dt>Best light</dt><dd>Golden hour → after dark</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (replace with real quotes) -->
+  <section style="padding-top:40px">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="mono amber">06 — Kind words</span>
+          <h2>What clients say</h2>
+        </div>
+      </div>
+      <div class="q-grid">
+        <div class="q reveal"><p>"Replace this with a short quote from a real client about how the session felt."</p><span class="mono">Client name · Graduation</span></div>
+        <div class="q reveal"><p>"Replace this with feedback from a family or couple shoot, ideally about the photos themselves."</p><span class="mono">Client name · Family</span></div>
+        <div class="q reveal"><p>"Replace this with a quote from a business client about results, like a better menu or more orders."</p><span class="mono">Business name · Food</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="mono amber">07 — Book a shoot</span>
+        <h2>Let's make something <em>quiet</em> and lovely.</h2>
+        <p>Fill in the form and I'll reply within a day with availability and a quote. Prefer chatting? WhatsApp works too.</p>
+        <div class="contact-links">
+          <!-- Replace 60123456789 with your number in international format, no + or spaces -->
+          <a href="https://wa.me/60123456789" target="_blank" rel="noopener">WhatsApp <span class="mono">→</span></a>
+          <a href="https://instagram.com/ceebsstudio" target="_blank" rel="noopener">Instagram · @ceebsstudio <span class="mono">→</span></a>
+          <a href="mailto:hello@yourname.com">hello@yourname.com <span class="mono">→</span></a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="form-frame">
+          <iframe id="booking-form" title="Booking form" loading="lazy">Loading…</iframe>
+        </div>
+        <p class="form-alt">Form not loading? <a href="#" id="form-link" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© <span id="yr"></span> Ceebs Studio</span>
+    <span class="mono">Kota Kinabalu · Labuan · Sabah</span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><button aria-label="Close">&times;</button><img alt=""><span class="mono" id="lb-cap"></span></div>
+
+<script>
+  // ===== Google Form booking =====
+  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdHlEIASj5TLD_kOi5z_279ATSF70Yu944Ne51E1Vce_5AZGQ/viewform?embedded=true";
+  document.getElementById('booking-form').src = GOOGLE_FORM_URL;
+  document.getElementById('form-link').href = GOOGLE_FORM_URL.replace('?embedded=true', '');
+
+  // Nav background after scrolling
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  document.querySelectorAll('.nav ul a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // Gallery filters
+  document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('#gallery .frame').forEach(fr => fr.classList.toggle('hide', f !== 'all' && fr.dataset.cat !== f));
+    });
+  });
+
+  // Package tabs
+  document.querySelectorAll('.pk-tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pk-tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('pk-people').classList.toggle('hide', btn.dataset.pk !== 'people');
+      document.getElementById('pk-biz').classList.toggle('hide', btn.dataset.pk !== 'biz');
+    });
+  });
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  document.querySelectorAll('#gallery .frame').forEach(fr => fr.addEventListener('click', () => {
+    lb.querySelector('img').src = fr.querySelector('img').src;
+    lb.querySelector('img').alt = fr.querySelector('img').alt;
+    document.getElementById('lb-cap').textContent = fr.querySelector('figcaption').innerText.replace('\n', ' — ');
+    lb.classList.add('open');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  // Fade sections in as they scroll into view
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 }) : null;
+  document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
