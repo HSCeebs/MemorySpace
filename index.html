@@ -237,7 +237,23 @@
     .hero { padding: 40px 0 64px; }
     .hero-stack { height: 380px; }
     .steps { grid-template-columns: 1fr; }
+    .form-frame iframe { height: 1100px; }
   }
+
+  /* Google Form embed */
+  .form-frame {
+    background: #fff; border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 24px 60px -30px rgba(0,0,0,.6);
+  }
+  .form-frame iframe { display: block; width: 100%; height: 960px; border: 0; }
+  .form-setup {
+    border: 1px dashed #5a5047; border-radius: var(--radius); padding: 32px; color: #cfc5b8;
+  }
+  .form-setup h3 { font-size: 26px; color: var(--paper); margin-bottom: 12px; }
+  .form-setup ol { margin: 14px 0 0 20px; display: grid; gap: 8px; font-size: 15px; }
+  .form-setup code { background: #2e2822; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+  .form-alt { margin-top: 14px; font-size: 14px; color: #a99e90; }
+  .form-alt a { color: #e8a37f; }
 </style>
 </head>
 <body>
@@ -372,21 +388,21 @@
       <div class="pk-grid" id="pk-people">
         <div class="pk">
           <h3>Starter</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 150</div>
           <span class="pk-note">Great for solo grads &amp; headshots</span>
           <ul><li>30–45 minutes</li><li>1 location</li><li>10–15 edited photos</li><li>Delivery within 7 days</li></ul>
           <a href="#contact" class="btn ghost">Book Starter</a>
         </div>
         <div class="pk featured">
           <h3>Standard</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 250</div>
           <span class="pk-note">Most popular</span>
           <ul><li>1 hour</li><li>1–2 locations</li><li>25–30 edited photos</li><li>Outfit change included</li></ul>
           <a href="#contact" class="btn">Book Standard</a>
         </div>
         <div class="pk">
           <h3>Extended</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 450</div>
           <span class="pk-note">Families &amp; group grads</span>
           <ul><li>2 hours</li><li>Multiple groups or outfits</li><li>50+ edited photos</li><li>Priority delivery</li></ul>
           <a href="#contact" class="btn ghost">Book Extended</a>
@@ -396,28 +412,28 @@
       <div class="pk-grid hide" id="pk-biz">
         <div class="pk">
           <h3>Essentials</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 200</div>
           <span class="pk-note">For new listings &amp; delivery apps</span>
           <ul><li>Up to 5 items</li><li>Clean white background</li><li>10 edited photos</li><li>Web-ready sizes</li></ul>
           <a href="#contact" class="btn ghost">Book Essentials</a>
         </div>
         <div class="pk featured">
           <h3>Styled</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 380</div>
           <span class="pk-note">Most popular</span>
           <ul><li>Up to 10 items</li><li>Styled flat lays &amp; lifestyle shots</li><li>20 edited photos</li><li>Social-media crops</li></ul>
           <a href="#contact" class="btn">Book Styled</a>
         </div>
         <div class="pk">
           <h3>Menu Day</h3>
-          <div class="price">RM ___</div>
+          <div class="price">RM 800</div>
           <span class="pk-note">Full menu or catalogue refresh</span>
           <ul><li>Half-day on location</li><li>Full menu or range</li><li>40+ edited photos</li><li>Monthly refresh option</li></ul>
           <a href="#contact" class="btn ghost">Book Menu Day</a>
         </div>
       </div>
 
-      <p class="pk-foot">A 30% deposit secures your date. Travel outside the city area may carry a small extra fee.</p>
+      <p class="pk-foot">Introductory prices for new clients. A 30% deposit secures your date. Travel outside the city area may carry a small extra fee.</p>
     </div>
   </section>
 
@@ -486,21 +502,27 @@
         </div>
       </div>
 
-      <!-- The form opens the visitor's email app with the details filled in.
-           For a real inbox form, sign up at a free form service and replace the form handling. -->
-      <form id="enquiry">
-        <div><label for="name">Name</label><input id="name" required></div>
-        <div><label for="type">Type of shoot</label>
-          <select id="type">
-            <option>Graduation</option><option>Portrait</option><option>Family</option>
-            <option>Product</option><option>Food / Menu</option><option>Something else</option>
-          </select>
+      <!-- =========================================================
+           GOOGLE FORM BOOKING
+           Paste your Google Form's embed link between the quotes on
+           the line that starts with  const GOOGLE_FORM_URL  near the
+           bottom of this file. Until you do, setup steps show here.
+           ========================================================= -->
+      <div>
+        <div class="form-frame" id="form-frame" hidden>
+          <iframe id="booking-form" title="Booking form" loading="lazy">Loading…</iframe>
         </div>
-        <div><label for="date">Preferred date</label><input id="date" type="date"></div>
-        <div><label for="msg">Tell me more</label><textarea id="msg" placeholder="Location ideas, number of people, items to shoot…"></textarea></div>
-        <button type="submit" class="btn">Send enquiry</button>
-        <span class="form-note">This opens your email app with your message ready to send.</span>
-      </form>
+        <div class="form-setup" id="form-setup">
+          <h3>Booking form goes here</h3>
+          <p>Your Google Form will appear in this space once it's connected:</p>
+          <ol>
+            <li>Create a form at forms.google.com with your booking questions.</li>
+            <li>Click <strong>Send</strong>, choose the <strong>&lt; &gt;</strong> (embed) tab and copy the link inside <code>src="…"</code>.</li>
+            <li>Paste it into <code>GOOGLE_FORM_URL</code> near the bottom of index.html.</li>
+          </ol>
+        </div>
+        <p class="form-alt">Form not loading? <a href="#" id="form-link" target="_blank" rel="noopener">Open it in a new tab</a> or message me on WhatsApp.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -562,13 +584,20 @@
   document.querySelectorAll('.nav ul a').forEach(a =>
     a.addEventListener('click', () => document.getElementById('nav').classList.remove('open')));
 
-  // Enquiry form → email
-  document.getElementById('enquiry').addEventListener('submit', e => {
-    e.preventDefault();
-    const v = id => document.getElementById(id).value;
-    const body = `Name: ${v('name')}\nShoot: ${v('type')}\nDate: ${v('date')}\n\n${v('msg')}`;
-    window.location.href = `mailto:hello@yourname.com?subject=${encodeURIComponent('Photo shoot enquiry: ' + v('type'))}&body=${encodeURIComponent(body)}`;
-  });
+  // ===== Google Form booking =====
+  // Paste your form's embed link here, e.g.
+  // "https://docs.google.com/forms/d/e/XXXXXXXX/viewform?embedded=true"
+  const GOOGLE_FORM_URL = "";
+
+  const formLink = document.getElementById('form-link');
+  if (GOOGLE_FORM_URL) {
+    document.getElementById('booking-form').src = GOOGLE_FORM_URL;
+    document.getElementById('form-frame').hidden = false;
+    document.getElementById('form-setup').hidden = true;
+    formLink.href = GOOGLE_FORM_URL.replace('embedded=true', '');
+  } else {
+    formLink.parentElement.hidden = true;
+  }
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
