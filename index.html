@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name Photography | Portraits, Graduation, Family, Product & Food</title>
+<meta name="description" content="Natural-light portraits, graduation and family photography, plus product and food photography for small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     EDIT THESE COLOURS TO MATCH YOUR BRAND
+     ========================================================= */
+  :root {
+    --paper: #f6f1ea;
+    --paper-2: #ece4d8;
+    --ink: #1f1b17;
+    --ink-soft: #5b534b;
+    --accent: #b5552b;      /* warm film-orange */
+    --accent-2: #2f4a3f;    /* deep green */
+    --line: #d6cbbb;
+    --radius: 4px;
+    --max: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 300; line-height: 1.1; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-family: "Fraunces", serif; font-size: 22px; text-decoration: none; }
+  .logo em { color: var(--accent); font-style: italic; }
+  .nav ul { display: flex; gap: 28px; list-style: none; }
+  .nav ul a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+  .nav ul a:hover { color: var(--ink); }
+  .nav .cta {
+    background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 99px;
+    text-decoration: none; font-size: 14px; font-weight: 600;
+  }
+  .menu-btn { display: none; background: none; border: 0; font-size: 26px; cursor: pointer; color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 72px 0 96px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(44px, 6.4vw, 84px); margin: 18px 0 22px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p.lead { color: var(--ink-soft); max-width: 30em; font-size: 19px; }
+  .btns { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 14px 26px; border-radius: 99px; text-decoration: none;
+    font-weight: 600; font-size: 15px; border: 1.5px solid var(--ink);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.ghost { background: transparent; }
+
+  .hero-stack { position: relative; height: 560px; }
+  .hero-stack .ph { position: absolute; box-shadow: 0 24px 60px -24px rgba(31,27,23,.45); }
+  .hero-stack .p1 { width: 62%; height: 78%; right: 0; top: 0; }
+  .hero-stack .p2 { width: 46%; height: 52%; left: 0; bottom: 0; border: 10px solid var(--paper); }
+  .film-tag {
+    position: absolute; left: 6%; top: 8%; font-size: 11px; letter-spacing: .2em;
+    background: var(--accent); color: #fff; padding: 6px 10px; text-transform: uppercase; z-index: 2;
+  }
+
+  /* ---------- Photo placeholders ----------
+     Put your photos in an "images" folder and they appear automatically.
+     Until then, a warm placeholder shows instead. */
+  .ph {
+    position: relative; overflow: hidden; border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(140deg, #c9a882, #8f6a4a 55%, #4a3b2f);
+  }
+  .ph.green { background:
+      radial-gradient(circle at 70% 20%, rgba(255,255,255,.3), transparent 55%),
+      linear-gradient(160deg, #9fb19a, #4f6b5b 60%, #263a31); }
+  .ph.light { background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,.6), transparent 60%),
+      linear-gradient(140deg, #efe2cf, #cfb593 70%, #a68562); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .ph::after {
+    content: attr(data-label);
+    position: absolute; left: 14px; bottom: 12px; font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.85);
+  }
+  .ph.has-img::after { display: none; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 96px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 48px; flex-wrap: wrap; }
+  .section-head h2 { font-size: clamp(34px, 4.4vw, 54px); margin-top: 10px; }
+  .section-head p { color: var(--ink-soft); max-width: 28em; }
+
+  /* Services */
+  .services { background: var(--paper-2); }
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .svc { background: var(--paper); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .svc .ph { height: 320px; border-radius: 0; }
+  .svc-body { padding: 30px 30px 34px; }
+  .svc-body .num { font-family: "Fraunces", serif; font-style: italic; color: var(--accent); font-size: 20px; }
+  .svc-body h3 { font-size: 32px; margin: 6px 0 12px; }
+  .svc-body p { color: var(--ink-soft); }
+  .svc-body ul { margin-top: 16px; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .svc-body li { font-size: 13px; border: 1px solid var(--line); padding: 5px 12px; border-radius: 99px; }
+
+  /* Portfolio */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filters button {
+    font: inherit; font-size: 14px; background: none; border: 1px solid var(--line); color: var(--ink-soft);
+    padding: 8px 16px; border-radius: 99px; cursor: pointer;
+  }
+  .filters button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .gallery { columns: 3 260px; column-gap: 16px; }
+  .gallery .ph { break-inside: avoid; margin-bottom: 16px; cursor: zoom-in; transition: opacity .25s ease; }
+  .gallery .ph.hide { display: none; }
+  .h-s { height: 240px; } .h-m { height: 340px; } .h-l { height: 440px; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(20,17,14,.92); display: none;
+    align-items: center; justify-content: center; z-index: 50; padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-height: 88vh; max-width: 92vw; }
+  .lightbox button { position: absolute; top: 18px; right: 24px; font-size: 34px; color: #fff; background: none; border: 0; cursor: pointer; }
+
+  /* Packages */
+  .pk-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .pk-tabs button {
+    font: inherit; font-size: 15px; background: none; border: 0; border-bottom: 2px solid transparent;
+    padding: 6px 2px; margin-right: 18px; cursor: pointer; color: var(--ink-soft);
+  }
+  .pk-tabs button.active { color: var(--ink); border-color: var(--accent); }
+  .pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pk-grid.hide { display: none; }
+  .pk { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; background: var(--paper); }
+  .pk.featured { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .pk.featured .pk-note, .pk.featured li { color: #d9cfc2; }
+  .pk h3 { font-size: 26px; }
+  .pk .price { font-family: "Fraunces", serif; font-size: 40px; margin: 14px 0 4px; }
+  .pk .pk-note { font-size: 13px; color: var(--ink-soft); }
+  .pk ul { list-style: none; margin: 22px 0 28px; display: grid; gap: 10px; }
+  .pk li { font-size: 15px; color: var(--ink-soft); padding-left: 22px; position: relative; }
+  .pk li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .pk .btn { margin-top: auto; text-align: center; }
+  .pk.featured .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .pk-foot { margin-top: 22px; font-size: 14px; color: var(--ink-soft); }
+
+  /* About */
+  .about .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
+  .about .ph { height: 520px; }
+  .about h2 { font-size: clamp(34px, 4.4vw, 54px); margin: 10px 0 22px; }
+  .about p { color: var(--ink-soft); margin-bottom: 16px; }
+  .gear { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+
+  /* Testimonials */
+  .quotes { background: var(--accent-2); color: #efe9df; }
+  .quotes .eyebrow { color: #e8a37f; }
+  .quotes h2 { color: #fff; }
+  .q-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .q { border-top: 1px solid rgba(255,255,255,.25); padding-top: 22px; }
+  .q p { font-family: "Fraunces", serif; font-size: 21px; font-weight: 300; line-height: 1.4; }
+  .q span { display: block; margin-top: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #c3d0c8; }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step::before { content: "0" counter(s); font-family: "Fraunces", serif; font-size: 44px; color: var(--accent); display: block; margin-bottom: 8px; }
+  .step h3 { font-size: 22px; margin-bottom: 6px; }
+  .step p { color: var(--ink-soft); font-size: 15px; }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--paper); }
+  .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .contact h2 { font-size: clamp(38px, 5vw, 64px); margin: 10px 0 20px; }
+  .contact p { color: #cfc5b8; }
+  .contact-links { margin-top: 30px; display: grid; gap: 12px; }
+  .contact-links a { text-decoration: none; font-size: 18px; border-bottom: 1px solid #4a423a; padding-bottom: 12px; display: flex; justify-content: space-between; }
+  .contact-links a:hover { color: #e8a37f; }
+  form { display: grid; gap: 14px; }
+  label { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #a99e90; }
+  input, select, textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--paper); background: transparent;
+    border: 1px solid #4a423a; border-radius: var(--radius); padding: 13px 14px; margin-top: 6px;
+  }
+  select option { color: var(--ink); }
+  textarea { min-height: 120px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  form .btn { background: var(--accent); border-color: var(--accent); color: #fff; cursor: pointer; font: inherit; font-weight: 600; }
+  .form-note { font-size: 13px; color: #8f8578; }
+
+  footer { background: var(--ink); color: #8f8578; border-top: 1px solid #3a332c; padding: 28px 0; font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero .wrap, .about .wrap, .contact .wrap, .svc-grid { grid-template-columns: 1fr; }
+    .hero-stack { height: 440px; }
+    .pk-grid, .q-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .about .ph { height: 380px; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    .menu-btn { display: block; }
+    .nav ul, .nav .cta { display: none; }
+    .nav.open ul {
+      display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0;
+      background: var(--paper); padding: 20px 16px; border-bottom: 1px solid var(--line); gap: 18px;
+    }
+    section { padding: 72px 0; }
+    .hero { padding: 40px 0 64px; }
+    .hero-stack { height: 380px; }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     QUICK EDIT GUIDE
+     1. Replace "Your Name" everywhere with your name or brand.
+     2. Put your photos in a folder called "images" with the file
+        names used below (e.g. images/portrait-1.jpg).
+     3. Update prices, contact details and the WhatsApp number.
+     ========================================================= -->
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">Your Name <em>Photo</em></a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="cta">Book a shoot</a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('nav').classList.toggle('open')">&#9776;</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Portraits · Graduation · Family · Product &amp; Food</span>
+        <h1>Natural-light photos that feel <em>like you</em>.</h1>
+        <p class="lead">Relaxed portrait, graduation and family sessions, plus clean, appetising photos for cafés, bakers and small brands.</p>
+        <div class="btns">
+          <a href="#packages" class="btn solid">See packages</a>
+          <a href="#portfolio" class="btn ghost">View portfolio</a>
+        </div>
+      </div>
+      <div class="hero-stack">
+        <span class="film-tag">Shot on Fujifilm</span>
+        <div class="ph p1" data-label="Hero portrait"><img src="images/hero-1.jpg" alt="Portrait session"></div>
+        <div class="ph p2 green" data-label="Hero detail"><img src="images/hero-2.jpg" alt="Graduation photo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">What I shoot</span>
+          <h2>Two ways I can help</h2>
+        </div>
+        <p>Whether it's a milestone worth remembering or a menu that needs to sell, every shoot gets the same care with light, colour and detail.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <div class="ph" data-label="Portrait sample"><img src="images/service-portrait.jpg" alt="Family portrait"></div>
+          <div class="svc-body">
+            <span class="num">01</span>
+            <h3>Portraits, Grads &amp; Families</h3>
+            <p>Easy-going outdoor and on-location sessions at golden hour. I'll guide you through posing so you can just enjoy it.</p>
+            <ul><li>Graduation</li><li>Family</li><li>Couples</li><li>Personal branding</li><li>Maternity</li></ul>
+          </div>
+        </article>
+        <article class="svc">
+          <div class="ph light" data-label="Food sample"><img src="images/service-food.jpg" alt="Food photography"></div>
+          <div class="svc-body">
+            <span class="num">02</span>
+            <h3>Product &amp; Food</h3>
+            <p>Bright, styled photos for menus, delivery apps, online shops and social media, shot at your place or in my setup.</p>
+            <ul><li>Menus</li><li>Delivery apps</li><li>Online shops</li><li>Flat lays</li><li>Social content</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Portfolio</span>
+          <h2>Recent work</h2>
+        </div>
+        <div class="filters" role="tablist">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="portrait">Portraits</button>
+          <button data-filter="grad">Graduation</button>
+          <button data-filter="family">Family</button>
+          <button data-filter="product">Product &amp; Food</button>
+        </div>
+      </div>
+
+      <!-- Add or remove photos here. Set data-cat to: portrait, grad, family or product -->
+      <div class="gallery" id="gallery">
+        <div class="ph h-l" data-cat="portrait" data-label="Portrait"><img src="images/portrait-1.jpg" alt="Portrait"></div>
+        <div class="ph light h-s" data-cat="product" data-label="Food"><img src="images/food-1.jpg" alt="Food"></div>
+        <div class="ph green h-m" data-cat="grad" data-label="Graduation"><img src="images/grad-1.jpg" alt="Graduation"></div>
+        <div class="ph h-m" data-cat="family" data-label="Family"><img src="images/family-1.jpg" alt="Family"></div>
+        <div class="ph light h-l" data-cat="product" data-label="Product"><img src="images/product-1.jpg" alt="Product"></div>
+        <div class="ph green h-s" data-cat="portrait" data-label="Portrait"><img src="images/portrait-2.jpg" alt="Portrait"></div>
+        <div class="ph h-m" data-cat="grad" data-label="Graduation"><img src="images/grad-2.jpg" alt="Graduation"></div>
+        <div class="ph light h-m" data-cat="product" data-label="Food"><img src="images/food-2.jpg" alt="Food"></div>
+        <div class="ph green h-l" data-cat="family" data-label="Family"><img src="images/family-2.jpg" alt="Family"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" style="background: var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Packages</span>
+          <h2>Simple, clear pricing</h2>
+        </div>
+        <p>Every package includes edited, high-resolution photos delivered in an online gallery. Need something custom? Just ask.</p>
+      </div>
+
+      <div class="pk-tabs">
+        <button class="active" data-pk="people">Portraits, Grads &amp; Family</button>
+        <button data-pk="biz">Product &amp; Food</button>
+      </div>
+
+      <!-- EDIT PRICES BELOW -->
+      <div class="pk-grid" id="pk-people">
+        <div class="pk">
+          <h3>Starter</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">Great for solo grads &amp; headshots</span>
+          <ul><li>30–45 minutes</li><li>1 location</li><li>10–15 edited photos</li><li>Delivery within 7 days</li></ul>
+          <a href="#contact" class="btn ghost">Book Starter</a>
+        </div>
+        <div class="pk featured">
+          <h3>Standard</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">Most popular</span>
+          <ul><li>1 hour</li><li>1–2 locations</li><li>25–30 edited photos</li><li>Outfit change included</li></ul>
+          <a href="#contact" class="btn">Book Standard</a>
+        </div>
+        <div class="pk">
+          <h3>Extended</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">Families &amp; group grads</span>
+          <ul><li>2 hours</li><li>Multiple groups or outfits</li><li>50+ edited photos</li><li>Priority delivery</li></ul>
+          <a href="#contact" class="btn ghost">Book Extended</a>
+        </div>
+      </div>
+
+      <div class="pk-grid hide" id="pk-biz">
+        <div class="pk">
+          <h3>Essentials</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">For new listings &amp; delivery apps</span>
+          <ul><li>Up to 5 items</li><li>Clean white background</li><li>10 edited photos</li><li>Web-ready sizes</li></ul>
+          <a href="#contact" class="btn ghost">Book Essentials</a>
+        </div>
+        <div class="pk featured">
+          <h3>Styled</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">Most popular</span>
+          <ul><li>Up to 10 items</li><li>Styled flat lays &amp; lifestyle shots</li><li>20 edited photos</li><li>Social-media crops</li></ul>
+          <a href="#contact" class="btn">Book Styled</a>
+        </div>
+        <div class="pk">
+          <h3>Menu Day</h3>
+          <div class="price">RM ___</div>
+          <span class="pk-note">Full menu or catalogue refresh</span>
+          <ul><li>Half-day on location</li><li>Full menu or range</li><li>40+ edited photos</li><li>Monthly refresh option</li></ul>
+          <a href="#contact" class="btn ghost">Book Menu Day</a>
+        </div>
+      </div>
+
+      <p class="pk-foot">A 30% deposit secures your date. Travel outside the city area may carry a small extra fee.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">How it works</span>
+          <h2>From hello to gallery</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Say hello</h3><p>Send a message with your date, idea and package.</p></div>
+        <div class="step"><h3>Plan it</h3><p>We pick a location and time, and I share tips on outfits or styling.</p></div>
+        <div class="step"><h3>Shoot day</h3><p>A relaxed session with plenty of guidance. No stiff poses.</p></div>
+        <div class="step"><h3>Your gallery</h3><p>Edited photos delivered in an online gallery, ready to download.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about" style="background: var(--paper-2);">
+    <div class="wrap">
+      <div class="ph green" data-label="Photo of you"><img src="images/about.jpg" alt="Photographer portrait"></div>
+      <div>
+        <span class="eyebrow">About</span>
+        <h2>Hi, I'm Your Name.</h2>
+        <p>I'm a photographer who loves warm natural light, honest expressions and the small details that make a moment yours.</p>
+        <p>I photograph graduates, families and couples, and help cafés, bakers and small brands show off what they make. Every shoot is unhurried, friendly and focused on photos you'll actually want to use.</p>
+        <p>Write a line or two here about yourself: where you're based, what you love shooting, or why you picked up a camera.</p>
+        <div class="gear">Shooting with Fujifilm, known for its film-inspired colour.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (replace with real ones) -->
+  <section class="quotes">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Kind words</span>
+          <h2>What clients say</h2>
+        </div>
+      </div>
+      <div class="q-grid">
+        <div class="q"><p>Replace this with a short quote from a real client about how the session felt.</p><span>Client name · Graduation</span></div>
+        <div class="q"><p>Replace this with feedback from a family shoot, ideally mentioning the photos themselves.</p><span>Client name · Family</span></div>
+        <div class="q"><p>Replace this with a quote from a business client about results, like more orders or a better menu.</p><span>Business name · Food</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" style="color:#e8a37f;">Book a shoot</span>
+        <h2>Let's make something lovely.</h2>
+        <p>Tell me a little about what you have in mind and I'll reply within a day with availability and a quote.</p>
+        <div class="contact-links">
+          <!-- Replace 60123456789 with your number in international format, no + or spaces -->
+          <a href="https://wa.me/60123456789" target="_blank" rel="noopener">WhatsApp <span>→</span></a>
+          <a href="mailto:hello@yourname.com">hello@yourname.com <span>→</span></a>
+          <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- The form opens the visitor's email app with the details filled in.
+           For a real inbox form, sign up at a free form service and replace the form handling. -->
+      <form id="enquiry">
+        <div><label for="name">Name</label><input id="name" required></div>
+        <div><label for="type">Type of shoot</label>
+          <select id="type">
+            <option>Graduation</option><option>Portrait</option><option>Family</option>
+            <option>Product</option><option>Food / Menu</option><option>Something else</option>
+          </select>
+        </div>
+        <div><label for="date">Preferred date</label><input id="date" type="date"></div>
+        <div><label for="msg">Tell me more</label><textarea id="msg" placeholder="Location ideas, number of people, items to shoot…"></textarea></div>
+        <button type="submit" class="btn">Send enquiry</button>
+        <span class="form-note">This opens your email app with your message ready to send.</span>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Your Name Photography</span>
+    <span>Portraits · Graduation · Family · Product &amp; Food</span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><button aria-label="Close">&times;</button><img alt=""></div>
+
+<script>
+  // Show placeholders until real photos are added
+  document.querySelectorAll('.ph img').forEach(img => {
+    const box = img.parentElement;
+    const ok = () => box.classList.add('has-img');
+    const fail = () => img.remove();
+    if (img.complete) { img.naturalWidth ? ok() : fail(); }
+    else { img.addEventListener('load', ok); img.addEventListener('error', fail); }
+  });
+
+  // Portfolio filters
+  document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('#gallery .ph').forEach(p => {
+        p.classList.toggle('hide', f !== 'all' && p.dataset.cat !== f);
+      });
+    });
+  });
+
+  // Package tabs
+  document.querySelectorAll('.pk-tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pk-tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('pk-people').classList.toggle('hide', btn.dataset.pk !== 'people');
+      document.getElementById('pk-biz').classList.toggle('hide', btn.dataset.pk !== 'biz');
+    });
+  });
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  document.querySelectorAll('#gallery .ph').forEach(p => {
+    p.addEventListener('click', () => {
+      const img = p.querySelector('img');
+      if (!img) return;
+      lb.querySelector('img').src = img.src;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+
+  // Close mobile menu after tapping a link
+  document.querySelectorAll('.nav ul a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('nav').classList.remove('open')));
+
+  // Enquiry form → email
+  document.getElementById('enquiry').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value;
+    const body = `Name: ${v('name')}\nShoot: ${v('type')}\nDate: ${v('date')}\n\n${v('msg')}`;
+    window.location.href = `mailto:hello@yourname.com?subject=${encodeURIComponent('Photo shoot enquiry: ' + v('type'))}&body=${encodeURIComponent(body)}`;
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
